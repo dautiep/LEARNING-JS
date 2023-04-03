@@ -210,6 +210,61 @@ var coins = courses.reduce(function(accumulator, curentValue) {
     // });
     // console.log(curentValue);
     return accumulator + curentValue.coin;
-}, 0) //in
+}, 0) //initial không bắt buộc
+ 
+//Khi không có initial thì lần chạy đầu tiên sẽ trả về phần tử đầu tiên của array
+//Khi mong muốn nhận cái giá trị cuối cùng là gì thì biến initial phải để cungd kiểu dữ liệu
 
 console.log(coins);
+
+//Khi mảng là mảng đơn và có kiểu dữ liệu trung với kiểu dữ liệu của mihf mong muốn xử lý thì không cần phải truyền initial
+var numbers =  [250, 0, 0, 500, 400];
+var total = numbers.reduce(function(all, number){
+    return all + number;
+});
+
+console.log(total);
+
+/**Bài tập */
+console.log('----Bài tập----');
+//Bài 1: Làm phẳng mảng sau (quy về mảng một chiều)
+var depthArray = [1, 2, [3, 4], 5, 6, [7, 8, 9]];
+var platArray = depthArray.reduce(function(platOutput, depthItem) {
+    return platOutput.concat(depthItem);
+}, []);
+console.log('Kết quả sau khi làm phẳng', platArray);
+
+//Bài 2: Lấy ra các khóa học và đưa vào một mảng mới
+var topics = [
+    {
+        topic: 'Front-end',
+        course: [
+            {
+                id: 1,
+                title: 'HTML, CSS'
+            },
+            {
+                id: 2,
+                title: 'Javascript'
+            }
+        ]
+    },
+    {
+        topic: 'Back-end',
+        course: [
+            {
+                id: 1,
+                title: 'PHP'
+            },
+            {
+                id: 2,
+                title: 'NodeJS'
+            }
+        ]
+    }
+];
+var newCourses = topics.reduce(function(courses, topic) {
+    return courses.concat(topic.course);
+}, []);
+console.log('Mảng các môn học sau khi xử lý', newCourses);
+
