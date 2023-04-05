@@ -46,7 +46,7 @@ for (let i = 0; i < length; i++) {
 }
 //=> Hiệu suất tốt hơn
 
-//2. for/in
+//2. for/in: duyệt qua element và phương thức custom
 console.log('----------vòng lặp for/in----------');
 
 var myInfo = {
