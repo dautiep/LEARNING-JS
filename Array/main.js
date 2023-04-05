@@ -136,6 +136,7 @@ var courses = [
 ];
 
 //1 forEach()
+// kết quả trả về là undefined
 courses.forEach(function(item, index) {
     console.log(index, item);
 });
