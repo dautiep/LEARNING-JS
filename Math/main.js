@@ -27,3 +27,12 @@ console.log('Số sau khi làm tròn', Math.ceil(4.00000000));
 //Math.floor(): làm tròn dưới, ngược lại với ceil
 console.log('Số sau khi làm tròn', Math.floor(4.9999999));
 console.log('Số sau khi làm tròn', Math.floor(4.00000000));
+
+//Math.random(): tạo ra số ngẫu nhiên
+console.log(Math.floor(Math.random() * 1000)); //lấy số ngẫu nhiên 0 -> 1000
+
+//Math.min(): lấy số nhỏ nhất
+console.log(Math.min(-100, 200, 50));
+
+//Math.max(): Lấy số lớn nhất
+console.log(Math.max(100, 200, 300));
