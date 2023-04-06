@@ -76,11 +76,13 @@ var fruitList = [
 
 //tạo hàm custom
 Array.prototype.forEachCustom = function(callback) {
-    let arrLength = this.length;
     let arrFruit = [];
-    for (let i = 0; i < arrLength; i++) {
-        var fruit =  callback(this[i], i);
-        arrFruit.push(fruit);
+    for (let index in this) {
+        //kiểm tra index có phải là property hay không
+        if(this.hasOwnProperty(index)) {
+            var fruit =  callback(this[index], index);
+            arrFruit.push(fruit);
+        }
     }
     return arrFruit;
 }
