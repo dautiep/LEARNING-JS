@@ -121,7 +121,7 @@ var books = [
     }
 ];
 
-var strResult =  books.reduce(function(result, item, index) {
+var arrResult =  books.reduce(function(result, item, index) {
     if (item.course !== undefined) {
         result = result.concat(item.course);
         let temp = {...item};
@@ -141,7 +141,7 @@ var strResult =  books.reduce(function(result, item, index) {
     // return str * item.price;
 }, []);
 
-console.log('Kết quả hàm nguyên bản:', strResult);
+console.log('Kết quả hàm nguyên bản:', arrResult);
 
 //Tạo hàm custom
 Array.prototype.reduceCustom = function(callback, initialValue) {
@@ -154,7 +154,7 @@ Array.prototype.reduceCustom = function(callback, initialValue) {
     return resultValue;
 }
 
-var strResultCustom =  books.reduceCustom(function(result, item, index) {
+var arrResultCustom =  books.reduceCustom(function(result, item, index) {
     if (item.course !== undefined) {
         result = result.concat(item.course);
         delete item.course;
@@ -170,5 +170,79 @@ var strResultCustom =  books.reduceCustom(function(result, item, index) {
     // return str * item.price;
 }, []);
 
-console.log('Kết quả hàm custom:', strResultCustom);
+console.log('Kết quả hàm custom:', arrResultCustom);
 
+console.log('------Filter------');
+
+var arrFilterResult = arrResult.filter(function(item, index) {
+    return item.price >= 400;
+});
+
+console.log('Kết quả hàm nguyên bản:', arrFilterResult);
+
+//định nghĩa hàm custom
+Array.prototype.filterCustom = function(callback) {
+    let arrResult = [];
+    for(let index in this) {
+        if (this.hasOwnProperty(index)) {
+            var result = callback(this[index], index);
+            if (result) {
+                arrResult.push(this[index]);
+            }
+        }
+    }
+    return arrResult;
+}
+
+var arrFilterResultCustom = arrResult.filterCustom(function(item, index) {
+    return item.price >= 400;
+});
+console.log('Kết quả hàm custom:', arrFilterResultCustom);
+
+console.log('------Some------');
+
+var isHasBookA = arrResult.some(function(item, index) {
+    return item.name === 'Book a'
+});
+
+console.log('Kết quả hàm nguyên bản:', isHasBookA);
+
+//định nghĩa hàm custom
+Array.prototype.someFilter = function(callback) {
+    for (let index in this) {
+        if (this.hasOwnProperty(index)) {
+            if (callback(this[index], index)) return true;
+        }
+    }
+    return false;
+}
+
+var isHasBookACustom = arrResult.someFilter(function(item, index) {
+    return item.name === 'Book a';
+});
+
+console.log('Kết quả hàm custom:', isHasBookACustom);
+
+console.log('------Every------');
+
+var isAllPriceBookThan50 = arrResult.every(function(item, index) {
+    return item.price > 150;
+});
+
+console.log('Kết quả hàm nguyên bản:', isAllPriceBookThan50);
+
+//định nghĩa hàm custom
+Array.prototype.everyCustom = function(callback) {
+    for (let index in this) {
+        if (this.hasOwnProperty(index)) {
+            if (!callback(this[index], index)) return false;
+        }
+    }
+    return true;
+}
+
+var isAllPriceBookThan50Custom = arrResult.everyCustom(function(item, index) {
+    return item.price > 150;
+});
+
+console.log('Kết quả hàm custom:', isAllPriceBookThan50Custom);
